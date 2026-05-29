@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raro CRM — Product Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:       #A3352B;
+    --red-light: #c9534a;
+    --red-dark:  #7a2620;
+    --gray:      #CECECE;
+    --gray-mid:  #a8a8a8;
+    --teal:      #61868B;
+    --teal-light:#8aadb2;
+    --dark:      #2F2F2F;
+    --dark-mid:  #4a4a4a;
+    --surface:   #EFEFED;
+    --white:     #ffffff;
+    --font-head: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--surface);
+    color: var(--dark);
+    font-family: var(--font-head);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 2px solid var(--red);
+    padding: 0 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: var(--dark);
+  }
+
+  .nav-logo span {
+    color: var(--red);
+  }
+
+  .nav-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--teal);
+    background: rgba(97,134,139,0.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── HERO ────────────────────────────── */
+  .hero {
+    padding: 60px 24px 40px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    color: var(--dark);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .hero p {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--dark-mid);
+    max-width: 380px;
+    margin: 0 auto 32px;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .pill-red   { background: var(--red);  color: var(--white); }
+  .pill-dark  { background: var(--dark); color: var(--white); }
+  .pill-teal  { background: var(--teal); color: var(--white); }
+  .pill-gray  { background: var(--gray); color: var(--dark);  }
+
+  /* ─── SECTION LABELS ─────────────────── */
+  .section {
+    padding: 56px 24px;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(22px, 6vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .section-sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--dark-mid);
+    margin-bottom: 32px;
+  }
+
+  /* ─── PHONE FRAME ────────────────────── */
+  .phone-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .phone {
+    width: 280px;
+    background: var(--dark);
+    border-radius: 36px;
+    padding: 14px;
+    box-shadow: 0 32px 64px rgba(47,47,47,0.22);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .phone-notch {
+    width: 90px;
+    height: 24px;
+    background: var(--dark);
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .notch-cam {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1a1a1a;
+  }
+
+  .notch-pill {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: #1a1a1a;
+  }
+
+  .phone-screen {
+    background: var(--surface);
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 520px;
+  }
+
+  /* ─── SCREEN: LEAD LIST ──────────────── */
+  .screen-header {
+    background: var(--white);
+    padding: 16px;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .screen-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .screen-page-title {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.3px;
+  }
+
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .icon-btn-red  { background: var(--red);  color: var(--white); }
+  .icon-btn-teal { background: var(--teal); color: var(--white); }
+  .icon-btn-gray { background: var(--gray); color: var(--dark);  }
+
+  .search-bar {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-bar span { font-size: 12px; color: var(--gray-mid); }
+
+  .search-placeholder {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .filter-chip {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-active { background: var(--red); color: var(--white); }
+  .filter-idle   { background: var(--gray); color: var(--dark-mid); }
+
+  .lead-list { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+
+  .lead-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lead-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .lead-info { flex: 1; min-width: 0; }
+
+  .lead-name {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--dark);
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lead-meta {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-new        { background: var(--gray);  }
+  .dot-contacted  { background: var(--teal);  }
+  .dot-appt       { background: #E8A838;      }
+  .dot-closed     { background: #4CAF50;      }
+  .dot-lost       { background: #999;         }
+
+  /* ─── SCREEN: LEAD DETAIL ────────────── */
+  .lead-detail-header {
+    background: var(--dark);
+    padding: 16px;
+    color: var(--white);
+  }
+
+  .back-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .detail-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+  }
+
+  .detail-contact {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-bottom: 14px;
+  }
+
+  .status-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .status-appt { background: rgba(232,168,56,0.2); color: #E8A838; }
+  .status-new  { background: rgba(206,206,206,0.2); color: var(--gray); }
+  .status-cont { background: rgba(97,134,139,0.2); color: var(--teal-light); }
+
+  .action-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .action-btn {
+    flex: 1;
+    padding: 9px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .action-btn-red  { background: var(--red);  color: var(--white); }
+  .action-btn-teal { background: var(--teal); color: var(--white); }
+  .action-btn-gray { background: #3d3d3d;     color: var(--gray);  }
+
+  .action-icon { font-size: 16px; }
+
+  .timeline { padding: 12px; }
+
+  .timeline-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 10px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .timeline-line-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  .t-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .t-line {
+    width: 2px;
+    flex: 1;
+    min-height: 16px;
+    background: var(--gray);
+    margin-top: 4px;
+    border-radius: 1px;
+  }
+
+  .t-dot-call  { background: rgba(163,53,43,0.12); color: var(--red);  }
+  .t-dot-sms   { background: rgba(97,134,139,0.15); color: var(--teal); }
+  .t-dot-note  { background: rgba(47,47,47,0.08);  color: var(--dark-mid); }
+  .t-dot-stat  { background: rgba(232,168,56,0.15); color: #E8A838; }
+
+  .t-body { flex: 1; }
+
+  .t-type {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--dark-mid);
+  }
+
+  .t-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-mid);
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+
+  .t-time {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* ─── SCREEN: REP DASHBOARD ──────────── */
+  .dash-header {
+    background: var(--dark);
+    padding: 16px;
+    color: var(--white);
+  }
+
+  .dash-greeting {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-bottom: 4px;
+  }
+
+  .dash-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+  }
+
+  .kpi-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .kpi-card {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .kpi-val {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    color: var(--white);
+  }
+
+  .kpi-val-red { color: var(--red-light); }
+  .kpi-val-teal { color: var(--teal-light); }
+  .kpi-val-green { color: #81c784; }
+
+  .kpi-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+
+  .dash-body { padding: 12px; }
+
+  .dash-section-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 10px;
+  }
+
+  .followup-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .followup-left { flex: 1; }
+  .followup-name {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--dark);
+  }
+
+  .followup-time {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--teal);
+    margin-top: 2px;
+  }
+
+  .followup-call {
+    width: 28px;
+    height: 28px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--white);
+  }
+
+  /* ─── SCREEN: MANAGER DASHBOARD ─────── */
+  .mgr-header {
+    background: var(--red);
+    padding: 16px;
+    color: var(--white);
+  }
+
+  .mgr-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .mgr-title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  .mgr-sub {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .pipeline-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .pipeline-stage {
+    flex: 1;
+    background: rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
+  }
+
+  .pipeline-count {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+  }
+
+  .pipeline-name {
+    font-family: var(--font-mono);
+    font-size: 7.5px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 8px;
+    padding-top: 8px;
+  }
+
+  .mgr-body { padding: 12px; }
+
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .team-table th {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    text-align: left;
+    padding: 0 4px 8px;
+  }
+
+  .team-table th:not(:first-child) { text-align: center; }
+
+  .team-table td {
+    padding: 7px 4px;
+    border-top: 1px solid rgba(206,206,206,0.5);
+  }
+
+  .rep-name-cell {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .rep-role {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--gray-mid);
+    margin-top: 1px;
+  }
+
+  .kpi-cell {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--dark);
+  }
+
+  .kpi-cell-lead { color: var(--red); }
+
+  /* ─── PIPELINE FLOW ──────────────────── */
+  .pipeline-flow {
+    padding: 32px 24px;
+    background: var(--white);
+    border-top: 2px solid var(--surface);
+    border-bottom: 2px solid var(--surface);
+  }
+
+  .flow-stages {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .flow-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+  }
+
+  .flow-node {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .node-new       { background: var(--gray-mid); }
+  .node-contacted { background: var(--teal); }
+  .node-appt      { background: #E8A838; }
+  .node-closed    { background: #4CAF50; }
+  .node-lost      { background: var(--dark-mid); }
+
+  .flow-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--dark-mid);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .flow-arrow {
+    font-size: 14px;
+    color: var(--gray-mid);
+    margin: 0 2px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ─── FEATURE CARDS ──────────────────── */
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .feat-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .feat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .feat-icon-red  { background: rgba(163,53,43,0.1); }
+  .feat-icon-teal { background: rgba(97,134,139,0.1); }
+  .feat-icon-dark { background: rgba(47,47,47,0.08);  }
+  .feat-icon-gold { background: rgba(232,168,56,0.12); }
+
+  .feat-body {}
+
+  .feat-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+    letter-spacing: -0.2px;
+    margin-bottom: 4px;
+  }
+
+  .feat-desc {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--dark-mid);
+  }
+
+  /* ─── STACK ──────────────────────────── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stack-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .stack-layer {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 4px;
+  }
+
+  .stack-tech {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--dark);
+    letter-spacing: -0.2px;
+  }
+
+  .stack-tech span {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--teal);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ─── ROLES ──────────────────────────── */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .role-card {
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .role-card-rep  { background: var(--dark); color: var(--white); }
+  .role-card-mgr  { background: var(--red);  color: var(--white); }
+
+  .role-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 10px;
+  }
+
+  .role-title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    margin-bottom: 12px;
+  }
+
+  .role-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .role-list li {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    line-height: 1.5;
+    opacity: 0.85;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .role-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0.6;
+  }
+
+  /* ─── COST TABLE ─────────────────────── */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cost-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--surface);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+
+  .cost-table td:last-child {
+    text-align: right;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .cost-table td:first-child {
+    color: var(--dark-mid);
+  }
+
+  .cost-total td {
+    border-bottom: none;
+    border-top: 2px solid var(--red);
+    padding-top: 12px;
+    font-weight: 600;
+  }
+
+  .cost-total td:last-child { color: var(--red); }
+
+  /* ─── FOOTER ─────────────────────────── */
+  footer {
+    background: var(--dark);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--white);
+  }
+
+  .footer-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .footer-logo em { font-style: normal; color: var(--red); }
+
+  .footer-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-bottom: 16px;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--red);
+    margin: 0 auto 16px;
+    border-radius: 1px;
+  }
+
+  .footer-contact {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--teal-light);
+  }
+
+  /* ─── DIVIDER ────────────────────────── */
+  .section-divider {
+    height: 2px;
+    background: var(--surface);
+    margin: 0 24px;
+  }
+
+  .divider-red  { background: var(--red);  height: 2px; }
+  .divider-gray { background: var(--gray); }
+
+  /* ─── FEEDBACK ──────────────────────── */
+  .feedback-section { background: var(--white); }
+
+  .feedback-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+  .feedback-card {
+    background: var(--surface);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--gray);
+  }
+
+  .feedback-row {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feedback-divider { height: 1.5px; background: var(--gray); }
+
+  .fb-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+
+  .fb-tag-red  { background: var(--red);  color: var(--white); }
+  .fb-tag-teal { background: var(--teal); color: var(--white); }
+  .fb-tag-dark { background: var(--dark); color: var(--white); }
+  .fb-tag-gray { background: var(--gray); color: var(--dark);  }
+
+  .fb-input {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--gray);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--dark);
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .fb-input::placeholder { color: var(--gray-mid); }
+  .fb-input:focus { border-color: var(--red); }
+
+  .copy-btn {
+    width: 100%;
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .copy-btn:hover  { background: var(--red); }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: #4CAF50; }
+
+  .copy-icon { font-size: 16px; }
+
+  .copy-hint {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: #4CAF50;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .copy-hint.show { opacity: 1; transform: translateY(0); }
+
+  /* ─── ANIMATIONS ─────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-16px); }
+    to   { opacity: 1; transform: translateX(0);     }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1);    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(163,53,43,0); }
+    50%       { box-shadow: 0 0 0 8px rgba(163,53,43,0.08); }
+  }
+
+  .hero          { animation: fadeUp 0.7s cubic-bezier(.22,.9,.5,1) both; }
+  .hero-eyebrow  { animation: fadeUp 0.6s 0.05s cubic-bezier(.22,.9,.5,1) both; }
+  .hero h1       { animation: fadeUp 0.7s 0.12s cubic-bezier(.22,.9,.5,1) both; }
+  .hero p        { animation: fadeUp 0.6s 0.22s cubic-bezier(.22,.9,.5,1) both; }
+  .hero-pills    { animation: fadeUp 0.6s 0.32s cubic-bezier(.22,.9,.5,1) both; }
+
+  nav { animation: slideIn 0.5s cubic-bezier(.22,.9,.5,1) both; }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(.22,.9,.5,1), transform 0.6s cubic-bezier(.22,.9,.5,1);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* stagger children inside fade-up grids */
+  .features .fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .features .fade-up:nth-child(3) { transition-delay: 0.16s; }
+  .features .fade-up:nth-child(4) { transition-delay: 0.24s; }
+  .features .fade-up:nth-child(5) { transition-delay: 0.32s; }
+  .features .fade-up:nth-child(6) { transition-delay: 0.40s; }
+
+  .phone { transition: transform 0.4s cubic-bezier(.22,.9,.5,1); }
+  .phone:hover { transform: translateY(-6px) rotate(0.5deg); }
+
+  .feat-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .feat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(47,47,47,0.09);
+  }
+
+  .role-card {
+    transition: transform 0.25s ease;
+  }
+
+  .role-card:hover { transform: translateY(-4px); }
+
+  /* ─── MAX WIDTH ──────────────────────── */
+  @media (min-width: 480px) {
+    nav, .hero, .section, .pipeline-flow, footer {
+      padding-left: max(24px, calc((100% - 440px) / 2));
+      padding-right: max(24px, calc((100% - 440px) / 2));
+    }
+    .section-divider { margin: 0 max(24px, calc((100% - 440px) / 2)); }
+  }
+
+  @media (min-width: 800px) {
+    nav, .hero, .section, .pipeline-flow, footer {
+      padding-left: max(24px, calc((100% - 560px) / 2));
+      padding-right: max(24px, calc((100% - 560px) / 2));
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────── -->
+<nav>
+  <div class="nav-logo">R<span>RARO</span></div>
+  <div class="nav-tag">CRM PREVIEW v0.1</div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow">Life Insurance Sales CRM</div>
+  <h1>Built for reps.<br><em>Owned by teams.</em></h1>
+  <p>Purpose-built lead management and outreach tooling for life insurance teams — with click-to-call, SMS, KPI tracking, and manager dashboards.</p>
+  <div class="hero-pills">
+    <span class="pill pill-red">Lead Management</span>
+    <span class="pill pill-teal">Click-to-Call</span>
+    <span class="pill pill-dark">KPI Tracking</span>
+    <span class="pill pill-gray">Team Dashboards</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── LEAD LIST SCREEN ───────────────── -->
+<section class="section">
+  <div class="section-label">Feature 01</div>
+  <h2 class="section-title">Your leads,<br><em>one place.</em></h2>
+  <p class="section-sub">Full lead list with instant search, status filters, and one-tap outreach from any card.</p>
+
+  <div class="phone-wrap fade-up">
+    <div class="phone">
+      <div class="phone-notch">
+        <div class="notch-cam"></div>
+        <div class="notch-pill"></div>
+      </div>
+      <div class="phone-screen">
+        <div class="screen-header">
+          <div class="screen-topbar">
+            <div class="screen-page-title">My Leads</div>
+            <div style="display:flex;gap:6px">
+              <div class="icon-btn icon-btn-teal">⊕</div>
+              <div class="icon-btn icon-btn-red">⊞</div>
+            </div>
+          </div>
+          <div class="search-bar">
+            <span>🔍</span>
+            <div class="search-placeholder">Search by name, phone, email…</div>
+          </div>
+          <div class="filter-row">
+            <span class="filter-chip filter-active">All</span>
+            <span class="filter-chip filter-idle">New</span>
+            <span class="filter-chip filter-idle">Contacted</span>
+            <span class="filter-chip filter-idle">Appt Set</span>
+          </div>
+        </div>
+
+        <div class="lead-list">
+          <div class="lead-card">
+            <div class="lead-avatar" style="background:var(--red)">MJ</div>
+            <div class="lead-info">
+              <div class="lead-name">Marcus Johnson</div>
+              <div class="lead-meta">📞 (555) 204-8811</div>
+            </div>
+            <div class="status-dot dot-appt"></div>
+          </div>
+          <div class="lead-card">
+            <div class="lead-avatar" style="background:var(--teal)">SR</div>
+            <div class="lead-info">
+              <div class="lead-name">Sofia Ramirez</div>
+              <div class="lead-meta">📞 (555) 917-3342</div>
+            </div>
+            <div class="status-dot dot-contacted"></div>
+          </div>
+          <div class="lead-card">
+            <div class="lead-avatar" style="background:var(--dark)">DK</div>
+            <div class="lead-info">
+              <div class="lead-name">Derek Kim</div>
+              <div class="lead-meta">📞 (555) 671-0092</div>
+            </div>
+            <div class="status-dot dot-new"></div>
+          </div>
+          <div class="lead-card">
+            <div class="lead-avatar" style="background:#5c7a3e">AB</div>
+            <div class="lead-info">
+              <div class="lead-name">Alexis Brown</div>
+              <div class="lead-meta">📞 (555) 448-5567</div>
+            </div>
+            <div class="status-dot dot-closed"></div>
+          </div>
+          <div class="lead-card">
+            <div class="lead-avatar" style="background:#7a4e7a">LP</div>
+            <div class="lead-info">
+              <div class="lead-name">Lisa Patel</div>
+              <div class="lead-meta">📞 (555) 332-9014</div>
+            </div>
+            <div class="status-dot dot-contacted"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PIPELINE FLOW ──────────────────── -->
+<div class="pipeline-flow fade-up">
+  <div class="section-label" style="margin-bottom:16px">Lead Pipeline</div>
+  <div class="flow-stages">
+    <div class="flow-stage">
+      <div class="flow-node node-new">N</div>
+      <div class="flow-label">New</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-stage">
+      <div class="flow-node node-contacted">C</div>
+      <div class="flow-label">Contacted</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-stage">
+      <div class="flow-node node-appt">A</div>
+      <div class="flow-label">Appt Set</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-stage">
+      <div class="flow-node node-closed">✓</div>
+      <div class="flow-label">Closed</div>
+    </div>
+    <div class="flow-arrow" style="opacity:0.3">·</div>
+    <div class="flow-stage">
+      <div class="flow-node node-lost" style="font-size:11px">Lost</div>
+      <div class="flow-label">Lost</div>
+    </div>
+  </div>
+  <p style="font-family:var(--font-mono);font-size:10px;color:var(--gray-mid);margin-top:14px;line-height:1.6;">Every status change is auto-logged to the lead's activity timeline. Managers can reassign leads at any stage.</p>
+</div>
+
+<!-- ─── LEAD DETAIL SCREEN ────────────── -->
+<section class="section">
+  <div class="section-label">Feature 02</div>
+  <h2 class="section-title">Call, text,<br><em>track everything.</em></h2>
+  <p class="section-sub">Click-to-call via Telnyx, direct SMS, and a full chronological activity timeline on every lead.</p>
+
+  <div class="phone-wrap fade-up">
+    <div class="phone">
+      <div class="phone-notch">
+        <div class="notch-cam"></div>
+        <div class="notch-pill"></div>
+      </div>
+      <div class="phone-screen">
+        <div class="lead-detail-header">
+          <div class="back-btn">← My Leads</div>
+          <div class="detail-name">Marcus Johnson</div>
+          <div class="detail-contact">marcus.j@gmail.com · (555) 204-8811</div>
+          <div class="status-badge status-appt">Appointment Set</div>
+          <div class="action-bar">
+            <div class="action-btn action-btn-red">
+              <span class="action-icon">📞</span>
+              <span>CALL</span>
+            </div>
+            <div class="action-btn action-btn-teal">
+              <span class="action-icon">💬</span>
+              <span>SMS</span>
+            </div>
+            <div class="action-btn action-btn-gray">
+              <span class="action-icon">📝</span>
+              <span>NOTE</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-label">Activity Timeline</div>
+
+          <div class="timeline-item">
+            <div class="timeline-line-wrap">
+              <div class="t-dot t-dot-stat">⬆</div>
+              <div class="t-line"></div>
+            </div>
+            <div class="t-body">
+              <div class="t-type">Status Change</div>
+              <div class="t-text">New → Appointment Set</div>
+              <div class="t-time">Today, 2:14 PM</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-line-wrap">
+              <div class="t-dot t-dot-call">📞</div>
+              <div class="t-line"></div>
+            </div>
+            <div class="t-body">
+              <div class="t-type">Call — 4m 22s</div>
+              <div class="t-text">Interested in whole life. Appt set for Thursday 3pm.</div>
+              <div class="t-time">Today, 2:10 PM</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-line-wrap">
+              <div class="t-dot t-dot-sms">💬</div>
+              <div class="t-line"></div>
+            </div>
+            <div class="t-body">
+              <div class="t-type">SMS Sent</div>
+              <div class="t-text">"Hi Marcus, just sent you the info…"</div>
+              <div class="t-time">Yesterday, 4:30 PM</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-line-wrap">
+              <div class="t-dot t-dot-note">📝</div>
+            </div>
+            <div class="t-body">
+              <div class="t-type">Note</div>
+              <div class="t-text">Referred by David — has two kids, interested in term coverage.</div>
+              <div class="t-time">Mon, 10:05 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── REP DASHBOARD SCREEN ──────────── -->
+<section class="section">
+  <div class="section-label">Feature 03</div>
+  <h2 class="section-title">Rep dashboard.</h2>
+  <p class="section-sub">Personal KPIs, today's follow-ups, and lead pipeline at a glance.</p>
+
+  <div class="phone-wrap fade-up">
+    <div class="phone">
+      <div class="phone-notch">
+        <div class="notch-cam"></div>
+        <div class="notch-pill"></div>
+      </div>
+      <div class="phone-screen">
+        <div class="dash-header">
+          <div class="dash-greeting">Thursday, May 29</div>
+          <div class="dash-name">Hey, Jordan 👋</div>
+          <div class="kpi-row">
+            <div class="kpi-card">
+              <div class="kpi-val kpi-val-red">14</div>
+              <div class="kpi-label">Calls Today</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-val kpi-val-teal">3</div>
+              <div class="kpi-label">Appts Set</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-val kpi-val-green">1</div>
+              <div class="kpi-label">Closes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-body">
+          <div class="dash-section-title">Today's Follow-Ups</div>
+
+          <div class="followup-card">
+            <div class="followup-left">
+              <div class="followup-name">Marcus Johnson</div>
+              <div class="followup-time">3:00 PM · Appointment</div>
+            </div>
+            <div class="followup-call">📞</div>
+          </div>
+
+          <div class="followup-card">
+            <div class="followup-left">
+              <div class="followup-name">Sofia Ramirez</div>
+              <div class="followup-time">4:30 PM · Follow-up call</div>
+            </div>
+            <div class="followup-call">📞</div>
+          </div>
+
+          <div class="followup-card">
+            <div class="followup-left">
+              <div class="followup-name">Derek Kim</div>
+              <div class="followup-time">5:00 PM · First contact</div>
+            </div>
+            <div class="followup-call">📞</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MANAGER DASHBOARD SCREEN ─────── -->
+<section class="section" style="padding-top:0">
+  <div class="section-label">Feature 04</div>
+  <h2 class="section-title">Manager view.<br><em>Full visibility.</em></h2>
+  <p class="section-sub">Team KPIs, pipeline by stage, and per-rep drill-down — all in one dashboard.</p>
+
+  <div class="phone-wrap fade-up">
+    <div class="phone">
+      <div class="phone-notch">
+        <div class="notch-cam"></div>
+        <div class="notch-pill"></div>
+      </div>
+      <div class="phone-screen">
+        <div class="mgr-header">
+          <div class="mgr-title-row">
+            <div>
+              <div class="mgr-title">Team Dashboard</div>
+              <div class="mgr-sub">Week of May 26 — May 30</div>
+            </div>
+            <div class="icon-btn icon-btn-teal" style="background:rgba(255,255,255,0.15);color:white;">⊟</div>
+          </div>
+          <div class="pipeline-row">
+            <div class="pipeline-stage">
+              <div class="pipeline-count">24</div>
+              <div class="pipeline-name">New</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count">18</div>
+              <div class="pipeline-name">Contacted</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count">9</div>
+              <div class="pipeline-name">Appt Set</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count">4</div>
+              <div class="pipeline-name">Closed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mgr-body">
+          <div class="dash-section-title">Rep Performance</div>
+          <table class="team-table">
+            <thead>
+              <tr>
+                <th>Rep</th>
+                <th>Calls</th>
+                <th>Appts</th>
+                <th>Closes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="rep-name-cell">Jordan Lee</div>
+                  <div class="rep-role">Rep</div>
+                </td>
+                <td class="kpi-cell kpi-cell-lead">62</td>
+                <td class="kpi-cell">12</td>
+                <td class="kpi-cell">3</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="rep-name-cell">Tanya Moore</div>
+                  <div class="rep-role">Rep</div>
+                </td>
+                <td class="kpi-cell">48</td>
+                <td class="kpi-cell">9</td>
+                <td class="kpi-cell">1</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="rep-name-cell">Carlos Vega</div>
+                  <div class="rep-role">Rep</div>
+                </td>
+                <td class="kpi-cell">55</td>
+                <td class="kpi-cell">11</td>
+                <td class="kpi-cell">2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── TWO ROLES ──────────────────────── -->
+<section class="section">
+  <div class="section-label">Access Control</div>
+  <h2 class="section-title">Two roles.<br><em>Right access.</em></h2>
+  <p class="section-sub">Reps see their own data. Managers see everything. Role-based access enforced at every API call.</p>
+
+  <div class="roles-grid fade-up">
+    <div class="role-card role-card-rep">
+      <div class="role-tag">Role</div>
+      <div class="role-title">Rep</div>
+      <ul class="role-list">
+        <li>Own leads only</li>
+        <li>Log calls & SMS</li>
+        <li>Personal KPIs</li>
+        <li>Calendar sync</li>
+      </ul>
+    </div>
+    <div class="role-card role-card-mgr">
+      <div class="role-tag">Role</div>
+      <div class="role-title">Manager</div>
+      <ul class="role-list">
+        <li>All reps' data</li>
+        <li>Reassign leads</li>
+        <li>Team KPI view</li>
+        <li>Pipeline report</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── FEATURES ──────────────────────── -->
+<section class="section">
+  <div class="section-label">What's Built</div>
+  <h2 class="section-title">Full-stack<br><em>feature set.</em></h2>
+  <p class="section-sub">Everything a life insurance team needs — nothing they don't.</p>
+
+  <div class="features">
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-red">📋</div>
+      <div class="feat-body">
+        <div class="feat-title">Lead Management</div>
+        <div class="feat-desc">Create, edit, search, and filter leads. Assign ownership. Track every status change automatically.</div>
+      </div>
+    </div>
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-teal">📞</div>
+      <div class="feat-body">
+        <div class="feat-title">Click-to-Call via Telnyx</div>
+        <div class="feat-desc">One tap initiates a call. Outcome and notes logged after. ~70% cheaper than Twilio.</div>
+      </div>
+    </div>
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-teal">💬</div>
+      <div class="feat-body">
+        <div class="feat-title">SMS Outreach</div>
+        <div class="feat-desc">Send texts directly from the lead detail page. All messages logged to the activity timeline.</div>
+      </div>
+    </div>
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-gold">📅</div>
+      <div class="feat-body">
+        <div class="feat-title">Calendar Integration</div>
+        <div class="feat-desc">Google Calendar sync + Calendly webhook support. Bookings auto-create events linked to a lead.</div>
+      </div>
+    </div>
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-dark">📊</div>
+      <div class="feat-body">
+        <div class="feat-title">KPI Tracking</div>
+        <div class="feat-desc">Calls, appointments, and closes tracked per rep per day. Aggregatable by week and month.</div>
+      </div>
+    </div>
+    <div class="feat-card fade-up">
+      <div class="feat-icon feat-icon-red">🏢</div>
+      <div class="feat-body">
+        <div class="feat-title">Multi-Org Isolation</div>
+        <div class="feat-desc">Every organization's data is fully isolated. No crossover. Enforced at every query.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── STACK ──────────────────────────── -->
+<section class="section">
+  <div class="section-label">Technology</div>
+  <h2 class="section-title">Serverless.<br><em>Production-grade.</em></h2>
+  <p class="section-sub">AWS-native infrastructure. Scales to zero when idle. All code, all infra.</p>
+
+  <div class="stack-grid fade-up">
+    <div class="stack-item">
+      <div class="stack-layer">Frontend</div>
+      <div class="stack-tech">Next.js<span>OpenNext + CloudFront</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Backend</div>
+      <div class="stack-tech">Lambda<span>TypeScript + API Gateway</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Database</div>
+      <div class="stack-tech">Aurora<span>Serverless v2 · PostgreSQL</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Auth</div>
+      <div class="stack-tech">Cognito<span>JWT · Role attributes</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">ORM</div>
+      <div class="stack-tech">Drizzle<span>Type-safe queries</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Infra</div>
+      <div class="stack-tech">CDK<span>TypeScript · us-east-1</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Calls / SMS</div>
+      <div class="stack-tech">Telnyx<span>REST API · Twilio-compatible</span></div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Async</div>
+      <div class="stack-tech">SQS<span>Lambda consumers</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── COST ───────────────────────────── -->
+<section class="section">
+  <div class="section-label">Economics</div>
+  <h2 class="section-title">~$45–75/mo<br><em>infrastructure.</em></h2>
+  <p class="section-sub">For ~20 users. Scales with usage — you pay for what you use.</p>
+
+  <table class="cost-table fade-up">
+    <tbody>
+      <tr>
+        <td>Aurora Serverless v2</td>
+        <td>~$40–60</td>
+      </tr>
+      <tr>
+        <td>Lambda + API Gateway</td>
+        <td>~$1–5</td>
+      </tr>
+      <tr>
+        <td>CloudFront + S3</td>
+        <td>~$1–5</td>
+      </tr>
+      <tr>
+        <td>CloudWatch</td>
+        <td>~$2–5</td>
+      </tr>
+      <tr>
+        <td>Cognito</td>
+        <td>$0</td>
+      </tr>
+      <tr>
+        <td>Telnyx (calls + SMS)</td>
+        <td>usage-based</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="cost-total">
+        <td>Total (excl. Telnyx)</td>
+        <td>~$45–75/mo</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div style="margin-top:20px;background:var(--white);border-radius:14px;padding:16px 18px;" class="fade-up">
+    <div style="font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Pricing Model</div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--dark-mid);line-height:1.7;">$250–300/month retainer<br><strong style="color:var(--dark)">or</strong> 8% revenue share.<br>Billing handled manually outside the app for MVP.</div>
+  </div>
+</section>
+
+<!-- ─── FEEDBACK ──────────────────────── -->
+<section class="section feedback-section">
+  <div class="section-label">Your Thoughts</div>
+  <h2 class="section-title">What do you<br><em>think?</em></h2>
+  <p class="section-sub">Jot down any feedback, ideas, or changes you'd like to see — then copy and send it over.</p>
+
+  <div class="feedback-wrap fade-up">
+    <div class="feedback-card">
+      <div class="feedback-row">
+        <div class="fb-tag fb-tag-red">Overall</div>
+        <textarea class="fb-input" placeholder="What's your overall impression?" rows="2"></textarea>
+      </div>
+      <div class="feedback-divider"></div>
+      <div class="feedback-row">
+        <div class="fb-tag fb-tag-teal">Changes</div>
+        <textarea class="fb-input" placeholder="What would you change or add?" rows="2"></textarea>
+      </div>
+      <div class="feedback-divider"></div>
+      <div class="feedback-row">
+        <div class="fb-tag fb-tag-dark">Issues</div>
+        <textarea class="fb-input" placeholder="Any concerns or issues?" rows="2"></textarea>
+      </div>
+      <div class="feedback-divider"></div>
+      <div class="feedback-row">
+        <div class="fb-tag fb-tag-gray">Other</div>
+        <textarea class="fb-input" placeholder="Anything else on your mind…" rows="2"></textarea>
+      </div>
+    </div>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyFeedback()">
+      <span class="copy-icon">⎘</span>
+      <span id="copyLabel">Copy Feedback</span>
+    </button>
+    <div class="copy-hint" id="copyHint">Copied! Paste it wherever you'd like to send it.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── FOOTER ─────────────────────────── -->
+<footer>
+  <div class="footer-logo">R<em>RARO</em></div>
+  <div class="footer-sub">Sales CRM for life insurance teams</div>
+  <div class="footer-divider"></div>
+  <div class="footer-contact">justin@tryraro.com</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Copy feedback
+  function copyFeedback() {
+    const labels = ['Overall', 'Changes', 'Issues', 'Other'];
+    const inputs = document.querySelectorAll('.fb-input');
+    let lines = ['── RARO CRM FEEDBACK ──', ''];
+    inputs.forEach((el, i) => {
+      const val = el.value.trim();
+      lines.push(`[${labels[i]}]`);
+      lines.push(val || '(no response)');
+      lines.push('');
+    });
+    lines.push('──────────────────────');
+
+    const text = lines.join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const label = document.getElementById('copyLabel');
+      const hint = document.getElementById('copyHint');
+      btn.classList.add('copied');
+      label.textContent = 'Copied!';
+      hint.classList.add('show');
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        label.textContent = 'Copy Feedback';
+        hint.classList.remove('show');
+      }, 3000);
+    });
+  }
+</script>
+</body>
+</html>
