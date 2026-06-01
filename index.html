@@ -506,15 +506,15 @@
 
   <div class="stats-row fade-up">
     <div class="stat-card">
-      <div class="stat-val complete">7</div>
+      <div class="stat-val complete">30</div>
       <div class="stat-label">Tasks Done</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val red">83</div>
+      <div class="stat-val red">64</div>
       <div class="stat-label">Remaining</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">1/6</div>
+      <div class="stat-val">0/6</div>
       <div class="stat-label">Phases Done</div>
     </div>
   </div>
@@ -522,10 +522,10 @@
   <div class="overall-bar-wrap fade-up">
     <div class="bar-label-row">
       <div class="bar-title">Overall Progress</div>
-      <div class="bar-pct">7.8%</div>
+      <div class="bar-pct">31.9%</div>
     </div>
     <div class="progress-track">
-      <div class="progress-fill" style="width: 7.8%"></div>
+      <div class="progress-fill" style="width: 31.9%"></div>
     </div>
   </div>
 </section>
@@ -540,23 +540,23 @@
       <div class="phase-head">
         <div class="phase-name">Dev Environment &amp; Setup</div>
         <div class="phase-bar-mini">
-          <div class="phase-bar-fill green" style="width:100%"></div>
+          <div class="phase-bar-fill green" style="width:85.7%"></div>
         </div>
       </div>
       <div class="phase-right">
-        <div class="phase-count">7/7</div>
-        <div class="phase-badge badge-complete">Complete</div>
+        <div class="phase-count">6/7</div>
+        <div class="phase-badge badge-progress">In Progress</div>
         <div class="phase-chevron">▾</div>
       </div>
     </summary>
     <div class="phase-body">
       <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">AWS account setup</div></div>
       <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">CDK bootstrap (cdk bootstrap aws://ACCOUNT/us-west-2)</div></div>
-      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">GitHub repo + branch strategy (main, dev, feature branches)</div></div>
-      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">CI/CD pipeline (GitHub Actions — lint, type-check, CDK diff/deploy)</div></div>
-      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Environment separation (dev / staging / prod CDK stacks)</div></div>
-      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Secrets management (AWS Secrets Manager — DB credentials, Telnyx keys, Google OAuth)</div></div>
-      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Local dev setup (.env.local, dev Aurora endpoint or local PG)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">GitHub repo + branch strategy (main + feature branches; protected main)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">CI/CD pipeline (GitHub Actions — typecheck, tests, CDK synth/deploy)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Environment separation (dev / prod CDK stacks)</div></div>
+      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Secrets management (AWS Secrets Manager — DB credentials, Telnyx keys, Google OAuth) — Phase 1+ when services provisioned</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Local dev setup (.env.local.example, Docker Postgres)</div></div>
     </div>
   </details>
 
@@ -567,44 +567,53 @@
       <div class="phase-head">
         <div class="phase-name">Infrastructure &amp; Auth</div>
         <div class="phase-bar-mini">
-          <div class="phase-bar-fill" style="width:0%"></div>
+          <div class="phase-bar-fill" style="width:85.7%"></div>
         </div>
       </div>
       <div class="phase-right">
-        <div class="phase-count">0/22</div>
-        <div class="phase-badge badge-pending">Not Started</div>
+        <div class="phase-count">24/28</div>
+        <div class="phase-badge badge-progress">In Progress</div>
         <div class="phase-chevron">▾</div>
       </div>
     </summary>
     <div class="phase-body">
       <div class="task-group-label">CDK Stacks</div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">VPC stack — private subnets, security groups, NAT gateway</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Database stack — Aurora Serverless v2 (PostgreSQL, private subnet)</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Auth stack — Cognito user pool, custom attributes (role, org_id)</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">API stack — API Gateway (HTTP API) + Lambda function baselines</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Frontend stack — CloudFront + S3 + OpenNext SSR Lambda</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">VPC stack — private subnets, security groups, NAT gateway</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Database stack — Aurora Serverless v2 (PostgreSQL, private subnet)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Auth stack — Cognito user pool, custom attributes (role, org_id)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">API stack — API Gateway (HTTP API) + Lambda function baselines</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Frontend stack — CloudFront + S3 + OpenNext SSR Lambda</div></div>
+      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Deploy to dev — run cdk deploy for all 5 stacks (requires user to run manually)</div></div>
 
       <div class="task-group-label">Drizzle ORM &amp; Migrations</div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Drizzle project setup + drizzle-kit config pointing to Aurora</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Schema: organizations, users, leads, activities, kpi_snapshots, calendar_events</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Initial migration run against dev Aurora</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Seed script (test org + rep + manager user)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Drizzle project setup + drizzle-kit config pointing to Aurora</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Schema: organizations, users, leads, activities, kpi_snapshots, calendar_events, invites</div></div>
+      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Initial migration run against dev Aurora (requires deploy)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Seed script (test org + rep + manager user)</div></div>
 
       <div class="task-group-label">Cognito Auth</div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">User pool — email/password auth, custom attributes: role, org_id</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">auth-handler Lambda — PostConfirmation trigger: provision org + user DB record</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">JWT validation utility (shared Lambda layer or inline per-handler)</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">org_id extraction from JWT enforced in every handler</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">User pool — email/password auth, custom attributes: role, org_id</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">auth-handler Lambda — PostConfirmation trigger: provision org + user DB record</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">JWT validation utility (shared Lambda layer or inline per-handler)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">org_id extraction from JWT enforced in every handler</div></div>
+
+      <div class="task-group-label">Billing (Stripe)</div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">billing-handler Lambda — Stripe Checkout, webhook, portal, status</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Subscription gate middleware (402 if org not active)</div></div>
+      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Stripe credentials stored in Secrets Manager (raro/dev/stripe) — manual step</div></div>
+      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">End-to-end billing test (requires deploy)</div></div>
 
       <div class="task-group-label">Frontend Auth Flow</div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Next.js project init + OpenNext config</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">CloudFront + S3 deploy pipeline wired up</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Login page</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Signup page (triggers org provisioning on submit)</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Auth state management (Cognito Amplify or manual JWT handling)</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Protected route wrapper — redirects unauthenticated users</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Role-based routing — reps vs managers see different root pages</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Logout</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Next.js project init + OpenNext config</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">CloudFront + S3 deploy pipeline wired up</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Login page</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Signup page (triggers org provisioning on submit, invite token support)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Auth state management (Cognito Amplify v6)</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Protected route wrapper — redirects unauthenticated users</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Role-based routing — reps vs managers see different root pages</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Logout</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Paywall page — seat picker + Stripe Checkout</div></div>
+      <div class="task-item"><div class="task-check check-done">✓</div><div class="task-text done">Billing success page — polls for activation</div></div>
     </div>
   </details>
 
@@ -662,7 +671,7 @@
         </div>
       </div>
       <div class="phase-right">
-        <div class="phase-count">0/21</div>
+        <div class="phase-count">0/20</div>
         <div class="phase-badge badge-pending">Not Started</div>
         <div class="phase-chevron">▾</div>
       </div>
@@ -711,7 +720,7 @@
         </div>
       </div>
       <div class="phase-right">
-        <div class="phase-count">0/13</div>
+        <div class="phase-count">0/12</div>
         <div class="phase-badge badge-pending">Not Started</div>
         <div class="phase-chevron">▾</div>
       </div>
@@ -736,7 +745,6 @@
       <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Team KPI table — all reps, sortable by any KPI column</div></div>
       <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Pipeline view — lead counts per status stage (bar or funnel)</div></div>
       <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">Per-rep drill-down — click rep → their lead list + activity feed</div></div>
-      <div class="task-item"><div class="task-check check-todo"></div><div class="task-text">KPI cards for manager's own view of team totals</div></div>
     </div>
   </details>
 
@@ -774,28 +782,44 @@
 <!-- ─── UP NEXT ──────────────────────────── -->
 <div class="upnext fade-up">
   <div class="section-label">Up Next</div>
-  <h2 class="section-title">Starting <em>Phase 1.</em></h2>
+  <h2 class="section-title">Deploy <em>Phase 1.</em></h2>
 
   <div class="upnext-list">
     <div class="upnext-item">
       <div class="upnext-num">1</div>
-      <div class="upnext-text">AWS account setup + CDK bootstrap</div>
+      <div class="upnext-text">cdk deploy RaroVpc-dev</div>
     </div>
     <div class="upnext-item">
       <div class="upnext-num">2</div>
-      <div class="upnext-text">CDK stacks: VPC + Aurora + Cognito + API Gateway baseline</div>
+      <div class="upnext-text">cdk deploy RaroDb-dev</div>
     </div>
     <div class="upnext-item">
       <div class="upnext-num">3</div>
-      <div class="upnext-text">Drizzle schema + initial migration</div>
+      <div class="upnext-text">cdk deploy RaroAuth-dev</div>
     </div>
     <div class="upnext-item">
       <div class="upnext-num">4</div>
-      <div class="upnext-text">auth-handler PostConfirmation trigger — org + user provisioning</div>
+      <div class="upnext-text">Store Stripe credentials in Secrets Manager (raro/dev/stripe)</div>
     </div>
     <div class="upnext-item">
       <div class="upnext-num">5</div>
-      <div class="upnext-text">Next.js project init + login/signup pages</div>
+      <div class="upnext-text">cdk deploy RaroApi-dev</div>
+    </div>
+    <div class="upnext-item">
+      <div class="upnext-num">6</div>
+      <div class="upnext-text">Invoke MigrationRunner Lambda to run initial DB migrations</div>
+    </div>
+    <div class="upnext-item">
+      <div class="upnext-num">7</div>
+      <div class="upnext-text">cdk deploy RaroFrontend-dev</div>
+    </div>
+    <div class="upnext-item">
+      <div class="upnext-num">8</div>
+      <div class="upnext-text">Set Cognito/API env vars in frontend/.env.local</div>
+    </div>
+    <div class="upnext-item">
+      <div class="upnext-num">9</div>
+      <div class="upnext-text">Run end-to-end smoke test (signup → billing → dashboard)</div>
     </div>
   </div>
 </div>
